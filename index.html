@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MYP Design: Home Anchor - Criterion C Planner</title>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Provided Color Palette */
+    --c1: #264653; /* Dark Slate */
+    --c2: #2a9d8f; /* Persian Green */
+    --c3: #e9c46a; /* Orange-Yellow */
+    --c4: #f4a261; /* Sandy Brown */
+    --c5: #e76f51; /* Burnt Sienna */
+    
+    --card: #ffffff;
+    --ink: var(--c1);
+    --muted: #6b7c85;
+    --line: #dce7e9;
+    --radius: 16px;
+  }
+  *{box-sizing:border-box}
+  
+  /* COLORFUL BACKGROUND */
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #e0f2f1 0%, #fdf0d5 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+  
+  .wrap{max-width:1000px;margin:0 auto;padding:25px 20px 60px}
+  
+  /* Header & Top Section */
+  .header{
+    background:var(--card); 
+    padding:20px 25px 25px 25px; 
+    border-radius:var(--radius); 
+    border:3px solid var(--c2); 
+    box-shadow: 0 8px 0 rgba(42,157,143,0.2); 
+    margin-bottom:25px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+  }
+  
+  /* School Logo */
+  .school-logo {
+    align-self: flex-start;
+    height: 65px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+  
+  /* Title */
+  .header h1 {
+    font-size: 1.5rem; 
+    margin: 0 0 10px; 
+    color: var(--c1); 
+    font-weight: 700; 
+    white-space: nowrap;
+    text-align: center;
+  }
+  
+  .header h2{font-size:1.2rem;margin:0 0 20px;color:var(--c5);font-weight:700; text-align: center;}
+  
+  /* Concepts Layout */
+  .concepts-wrapper {display:flex; align-items:center; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:20px; background:var(--c3); padding:12px 20px; border-radius:12px; border:2px dashed var(--c1); width: 100%;}
+  .concepts-title {font-weight:700; font-size:1.1rem; color:var(--c1); text-transform:uppercase; letter-spacing:1px;}
+  .concepts-tags {display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
+  .concept-tag {padding:6px 16px; border-radius:20px; font-size:0.9rem; font-weight:700; color:#fff; box-shadow:0 3px 0 rgba(0,0,0,0.15)}
+  .concept-tag:nth-child(1) {background:var(--c5)} /* Identity */
+  .concept-tag:nth-child(2) {background:var(--c2)} /* Form */
+  .concept-tag:nth-child(3) {background:var(--c1)} /* Culture */
+  .concept-tag:nth-child(4) {background:var(--c4); color:var(--c1)} /* Empathy */
+  
+  /* Criterion C Box */
+  .criterion-box {background:#fff; border:2px solid var(--c4); border-radius:12px; padding:15px; text-align:left; display:grid; grid-template-columns:1fr 1fr; gap:10px; width: 100%;}
+  .criterion-title {grid-column:1 / -1; font-weight:700; color:var(--c1); font-size:1.1rem; border-bottom:2px solid var(--c2); padding-bottom:5px; margin-bottom:5px;}
+  .strand-item {background:#f4f7f6; padding:8px 12px; border-radius:8px; font-size:0.95rem; color:var(--c1); display:flex; align-items:flex-start; gap:8px; font-weight:700; border-left:4px solid var(--c2)}
+  .strand-item span {color:var(--c5); font-size:1.2rem; line-height:1}
+  
+  /* Responsive Title and Layout */
+  @media(max-width: 850px) {
+    .header h1 { white-space: normal; font-size: 1.3rem; }
+    .criterion-box { grid-template-columns: 1fr; }
+  }
+  
+  /* Deadline Banner */
+  .deadline-banner{background:var(--c1); color:#fff; padding:18px; border-radius:var(--radius); margin-bottom:25px; text-align:center; font-weight:700; font-size:1.1rem; box-shadow:0 6px 0 rgba(38,70,83,0.3); border:2px solid var(--c4)}
+  .deadline-banner span{color:var(--c3); font-weight:700; font-size:1.3rem;}
+  
+  /* Cards */
+  .card{background:var(--card);border:2px solid var(--line);border-radius:var(--radius);
+        padding:22px;margin-bottom:20px;box-shadow:0 6px 15px rgba(0,0,0,.06); transition:transform 0.2s}
+  .card:hover{transform:translateY(-2px); border-color:var(--c4)}
+  .card h3{font-size:1.2rem;margin:0 0 15px;display:flex;align-items:center;gap:10px;color:var(--c1);border-bottom:3px solid var(--c3);padding-bottom:10px; font-weight:700}
+  .card h3 .n{background:var(--c5);color:#fff;width:32px;height:32px;border-radius:50%;
+              display:inline-flex;align-items:center;justify-content:center;font-size:1rem;flex:none; box-shadow:0 2px 4px rgba(231,111,81,0.3)}
+  
+  /* Inputs */
+  label{display:block;font-size:.95rem;color:var(--c1);margin:15px 0 6px;font-weight:700}
+  input,textarea,select{width:100%;padding:12px;border:2px solid var(--line);
+        border-radius:10px;font:inherit;color:var(--ink);background:#fafafa;transition:0.2s}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--c2);background:#fff; box-shadow:0 0 0 3px rgba(42,157,143,0.2)}
+  textarea{min-height:70px;resize:vertical}
+  
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+  @media(max-width:600px){.grid2{grid-template-columns:1fr}}
+  
+  /* Progress Bar */
+  .barwrap{display:flex;align-items:center;gap:15px;margin-top:10px}
+  .bar{flex:1;height:24px;background:#e9ecef;border-radius:99px;overflow:hidden; border:2px solid var(--c1)}
+  .fill{height:100%;width:0;background:linear-gradient(90deg, var(--c2), var(--c3));
+        border-radius:99px;transition:width .4s ease}
+  .pct{font-weight:700;min-width:60px;text-align:center;color:var(--c2);font-size:1.4rem}
+  .summary{font-size:1rem;color:var(--c1);margin-top:10px;font-weight:700; text-align:center}
+  
+  /* Task Cards */
+  .task-card{background:#fff;border:2px solid var(--line);border-radius:12px;padding:20px;margin-bottom:15px;position:relative; box-shadow:0 3px 8px rgba(0,0,0,0.04); border-left:8px solid var(--c4)}
+  .task-card.done{border-color:var(--c2);background:#f0fdf9; border-left-color:var(--c2)}
+  .task-card.done .title {text-decoration:line-through; color:var(--muted)}
+  .task-header{display:flex;align-items:center;gap:12px;margin-bottom:15px;flex-wrap:wrap}
+  .task-header input[type="text"]{flex:1;font-weight:700;font-size:1.1rem;min-width:200px; border:none; border-bottom:2px dashed var(--c3); border-radius:0; padding:5px 0; background:transparent}
+  .task-header input[type="text"]:focus {border-bottom-color:var(--c2); box-shadow:none}
+  .task-header input[type="date"]{width:auto;padding:8px; border:2px solid var(--c4); border-radius:8px; font-weight:700; color:var(--c1)}
+  .chk{width:28px;height:28px;accent-color:var(--c2);cursor:pointer;flex:none}
+  .del-btn{background:#ffeef0;color:var(--c5);border:2px solid #ffccd5;border-radius:8px;
+       cursor:pointer;font-size:1rem;padding:6px 12px;height:40px;font-weight:700; transition:0.2s}
+  .del-btn:hover{background:var(--c5); color:#fff; border-color:var(--c5)}
+  
+  .task-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+  @media(max-width:768px){.task-grid{grid-template-columns:1fr}}
+  
+  .task-grid label{font-size:.85rem;margin:0 0 4px;color:var(--c1); display:flex; align-items:center; gap:5px}
+  .task-grid textarea{min-height:70px;font-size:.9rem; border-width:1px}
+  
+  /* Buttons */
+  .btn{border:none;border-radius:10px;padding:14px 28px;font:inherit;cursor:pointer;
+       background:var(--c2);color:#fff;font-weight:700;font-size:1.1rem;transition:0.2s; box-shadow:0 4px 0 #1f7a6f; border:2px solid transparent}
+  .btn:active{transform:translateY(4px); box-shadow:none}
+  .btn:hover{background:#238c80}
+  .btn.ghost{background:var(--c3);color:var(--c1);box-shadow:0 4px 0 #c9a24b}
+  .btn.ghost:hover{background:#dfba5b}
+  .btn.line{background:#fff;border:2px solid var(--line);color:var(--ink);box-shadow:0 4px 0 var(--line)}
+  .btn.line:hover{background:#f8f9fa}
+  .btn.danger{color:var(--c5); border-color:#ffccd5; box-shadow:0 4px 0 #ffccd5}
+  .btn.danger:hover{background:var(--c5); color:#fff}
+  
+  .hint{font-size:.9rem;color:var(--muted);margin-top:8px;font-style:italic; background:#f0f7f6; padding:12px; border-radius:8px; border-left:4px solid var(--c3); border: 1px solid var(--line)}
+  
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff !important}
+    .wrap{padding:0}
+    .card,.task-card,.header,.deadline-banner{break-inside:avoid;box-shadow:none;border:1px solid #000}
+    .header{border:2px solid #000}
+    input,textarea,select{border:none!important;background:#fff!important;padding:0 4px}
+    .task-card.done{background:#fff}
+    .concept-tag{border:1px solid #000; color:#000; background:#fff !important}
+    .criterion-box{border:1px solid #000}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <img src="IB3.png" alt="School Logo" class="school-logo">
+    
+    <!-- Max 8cm removed from title -->
+    <h1>Can an object be playful, even if it is not meant for playing with?</h1>
+    <h2>Designing a "Home Anchor" – Art Toy Prototype</h2>
+    
+    <div class="concepts-wrapper">
+      <span class="concepts-title">Key Concepts:</span>
+      <div class="concepts-tags">
+        <span class="concept-tag">Identity</span>
+        <span class="concept-tag">Form</span>
+        <span class="concept-tag">Culture</span>
+        <span class="concept-tag">Empathy</span>
+      </div>
+    </div>
+
+    <div class="criterion-box">
+      <div class="criterion-title">Criterion C Strands (Creating the Solution)</div>
+      <div class="strand-item"><span>i.</span> Construct a logical plan</div>
+      <div class="strand-item"><span>ii.</span> Demonstrate technical skills</div>
+      <div class="strand-item"><span>iii.</span> Follow the plan to create the solution</div>
+      <div class="strand-item"><span>iv.</span> Explain changes made</div>
+    </div>
+  </div>
+
+  <!-- DEADLINES BANNER -->
+  <div class="deadline-banner">
+    ⚠️ Important Deadlines:<br>
+    First Progress Report due: <span>November 22</span> <br> Final Work & Exhibition due: <span>November 29</span>
+  </div>
+
+  <!-- PROGRESS BAR -->
+  <div class="card no-print">
+    <h3>📊 Daily Progress Tracker</h3>
+    <div class="barwrap">
+      <div class="bar"><div class="fill" id="barFill"></div></div>
+      <div class="pct" id="pct">0%</div>
+    </div>
+    <div class="summary" id="summary">No tasks added yet. Start by adding your first step below.</div>
+  </div>
+
+  <!-- 1. STUDENT INFO -->
+  <div class="card">
+    <h3><span class="n">1</span> Student & Project Info</h3>
+    <div class="grid2">
+      <div><label>Student Name</label><input data-bind="student.name" placeholder="e.g., Sara Ahmadi"></div>
+      <div><label>Class</label><input data-bind="student.cls" placeholder="e.g., G8A or G8B"></div>
+      <div><label>Project Title</label><input data-bind="student.project" placeholder="e.g., The Sitting Fox"></div>
+      <div><label>Start Date</label><input data-bind="student.date" type="date"></div>
+    </div>
+  </div>
+
+  <!-- 2. METHOD -->
+  <div class="card">
+    <h3><span class="n">2</span> Chosen Production Method</h3>
+    <label>Select Method</label>
+    <select data-bind="method.choice" id="methodSelect">
+      <option value="">— Select —</option>
+      <option>3D Printing (External Order)</option>
+      <option>Wood (Manual / Laser / CNC)</option>
+      <option>Papier-mâché</option>
+      <option>Air-dry / Polymer Clay</option>
+      <option>Mixed / Simple (Foam, Cardboard, Wire)</option>
+      <option value="other">Other (Please specify)</option>
+    </select>
+    <div id="otherMethodBox" style="display:none; margin-top:10px;">
+      <label>If Other, please specify:</label>
+      <input data-bind="method.other" placeholder="e.g., Resin, Fabric, etc.">
+    </div>
+    <label>Justify this choice (Cost, Time, Skill, Tools, Aesthetics) - <i>Command Term: Justify</i></label>
+    <textarea data-bind="method.reason" placeholder="e.g., I chose 3D printing because it captures fine details accurately and the cost fits my budget..."></textarea>
+  </div>
+
+  <!-- 3. MATERIALS & BUDGET -->
+  <div class="card">
+    <h3><span class="n">3</span> Materials, Tools & Budget</h3>
+    <label>Materials & Tools</label>
+    <textarea data-bind="materials" placeholder="e.g., 3D printed PLA part, acrylic paint, sandpaper, hot glue, cardboard box for packaging... (Remember: Art Toys are usually small, like blind box size)"></textarea>
+    
+    <label>Budget & Estimated Costs</label>
+    <textarea data-bind="budget" placeholder="e.g., 3D Print order: 200,000 Toman, Paint: 80,000 Toman, Label printing: 50,000 Toman — Total: 330,000 Toman"></textarea>
+  </div>
+
+  <!-- 4. TASKS (CRITERION C) -->
+  <div class="card">
+    <h3><span class="n">4</span> Production Plan (Tasks) <span style="font-size:0.85rem;background:var(--c3);padding:4px 10px;border-radius:10px;color:var(--c1); margin-left:auto;">Criterion C</span></h3>
+    <p class="hint">
+      <strong>IB Command Terms to use:</strong> <i>Construct, Develop, Document, Create, Justify.</i><br>
+      Break your plan into small steps. Document your process, safety, and any changes you make along the way. 
+      <strong>Reminder:</strong> Check your Unit Planner for size limits (e.g., if you are making a blind box, keep it small!).
+    </p>
+    
+    <div id="tasksList"></div>
+    <button class="btn ghost no-print" id="addTask">+ Add New Task</button>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="card no-print" style="text-align:center; border-color:var(--c2);">
+    <h3 style="justify-content:center; border:none; margin-bottom:0;">🖨️ Export for Teacher</h3>
+    <div style="display:flex; gap:15px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+      <button class="btn" id="btnPrint">Print / Save as PDF</button>
+      <button class="btn line danger" id="btnReset">Reset All</button>
+    </div>
+    <p class="hint" style="margin-top:20px; text-align:left;">Data is saved automatically in your browser. Use the Print button to create a PDF or screenshot to send to your teacher.</p>
+  </div>
+
+</div>
+
+<script>
+const KEY = 'myp-criterion-c-planner-v6';
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = () => Math.random().toString(36).slice(2, 9);
+
+function defaults(){
+  return {
+    student:{name:'',cls:'',project:'',date:''},
+    method:{choice:'', other:'', reason:''},
+    materials:'', budget:'',
+    tasks:[{id:uid(), title:'', deadline:'', safety:'', success:'', ai:'', notes:'', done:false}]
+  };
+}
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw) return Object.assign(defaults(), JSON.parse(raw));
+  }catch(e){}
+  return defaults();
+}
+let state = load();
+
+function save(){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+}
+
+/* --- Bind Simple Inputs --- */
+document.querySelectorAll('[data-bind]').forEach(el=>{
+  const path = el.dataset.bind.split('.');
+  let v = state;
+  for(const p of path) v = v ? v[p] : '';
+  el.value = v ?? '';
+  
+  if (el.id === 'methodSelect') {
+    const standardOptions = ['3D Printing (External Order)', 'Wood (Manual / Laser / CNC)', 'Papier-mâché', 'Air-dry / Polymer Clay', 'Mixed / Simple (Foam, Cardboard, Wire)'];
+    if (v !== '' && !standardOptions.includes(v)) {
+      $('#otherMethodBox').style.display = 'block';
+    }
+    el.addEventListener('change', () => {
+      if (el.value === 'other' || el.value === '') {
+        $('#otherMethodBox').style.display = 'block';
+      } else {
+        $('#otherMethodBox').style.display = 'none';
+      }
+    });
+  }
+
+  el.addEventListener('input', ()=>{
+    let obj = state;
+    for(let i=0;i<path.length-1;i++) obj = obj[path[i]];
+    obj[path[path.length-1]] = el.value;
+    save();
+  });
+});
+
+/* --- Render Tasks --- */
+function renderTasks(){
+  const box = $('#tasksList');
+  box.innerHTML = '';
+  if(!state.tasks.length){
+    box.innerHTML = '<p style="text-align:center; font-weight:bold; color:var(--muted);">No tasks added yet. Click the button below to start planning.</p>';
+  }
+  state.tasks.forEach((t)=>{
+    const card = document.createElement('div');
+    card.className = 'task-card' + (t.done ? ' done' : '');
+    card.innerHTML = `
+      <div class="task-header">
+        <input type="checkbox" class="chk" ${t.done?'checked':''} title="Mark as Done">
+        <input type="text" class="title" placeholder="Task Name (e.g., Construct 3D model in software)" value="${esc(t.title)}">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <label style="margin:0; font-size:0.85rem; white-space:nowrap; color:var(--c1);">Deadline:</label>
+          <input type="date" class="deadline" value="${esc(t.deadline)}">
+        </div>
+        <button class="del-btn no-print" title="Delete Task">✕</button>
+      </div>
+      <div class="task-grid">
+        <div>
+          <label>🛡️ Risk & Safety</label>
+          <textarea class="safety" placeholder="e.g., Sand sharp edges of the 3D print. Use gloves for hot glue.">${esc(t.safety)}</textarea>
+        </div>
+        <div>
+          <label>🎯 Success Criteria</label>
+          <textarea class="success" placeholder="e.g., Model printed without holes, fits the blind box size.">${esc(t.success)}</textarea>
+        </div>
+        <div>
+          <label>🤖 AI Role & Documentation</label>
+          <textarea class="ai" placeholder="e.g., Used AI to clean up sketch. Documented changes in portfolio.">${esc(t.ai)}</textarea>
+        </div>
+        <div>
+          <label>📝 Changes Made & Notes (Explain)</label>
+          <textarea class="notes" placeholder="e.g., Changed material from clay to 3D print because clay kept cracking.">${esc(t.notes)}</textarea>
+        </div>
+      </div>
+    `;
+    
+    const [chk, title, deadline] = card.querySelectorAll('input');
+    const [safety, success, ai, notes] = card.querySelectorAll('textarea');
+    
+    chk.addEventListener('change', ()=>{
+      t.done = chk.checked;
+      card.classList.toggle('done', t.done);
+      save(); updateProgress();
+    });
+    title.addEventListener('input', ()=>{ t.title = title.value; save(); });
+    deadline.addEventListener('input', ()=>{ t.deadline = deadline.value; save(); });
+    safety.addEventListener('input', ()=>{ t.safety = safety.value; save(); });
+    success.addEventListener('input', ()=>{ t.success = success.value; save(); });
+    ai.addEventListener('input', ()=>{ t.ai = ai.value; save(); });
+    notes.addEventListener('input', ()=>{ t.notes = notes.value; save(); });
+    
+    card.querySelector('.del-btn').addEventListener('click', ()=>{
+      if(confirm("Delete this task?")) {
+        state.tasks = state.tasks.filter(x=>x.id!==t.id);
+        save(); renderTasks();
+      }
+    });
+    box.appendChild(card);
+  });
+  updateProgress();
+}
+
+$('#addTask').addEventListener('click', ()=>{
+  state.tasks.push({id:uid(), title:'', deadline:'', safety:'', success:'', ai:'', notes:'', done:false});
+  save(); renderTasks();
+});
+
+/* --- Progress Bar --- */
+function updateProgress(){
+  const total = state.tasks.length;
+  const done = state.tasks.filter(t=>t.done).length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  
+  $('#barFill').style.width = pct + '%';
+  $('#pct').textContent = pct + '%';
+  
+  if(!total){
+    $('#summary').textContent = 'No tasks added yet. Start by adding your first step below.';
+  }else{
+    $('#summary').textContent = `✅ ${done} out of ${total} tasks completed. Keep going!`;
+  }
+}
+
+/* --- Buttons --- */
+$('#btnPrint').addEventListener('click', ()=> window.print());
+
+$('#btnReset').addEventListener('click', ()=>{
+  if(confirm('Are you sure you want to delete all data? (Make sure you have saved a PDF first!)')){
+    localStorage.removeItem(KEY);
+    state = defaults();
+    location.reload();
+  }
+});
+
+/* --- Init --- */
+renderTasks();
+</script>
+</body>
+</html>
